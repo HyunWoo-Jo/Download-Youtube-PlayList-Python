@@ -28,15 +28,15 @@ def download_youtube_playlist_as_mp3(playlist_url, output_dir):
 
     ydl_opts = {
         'format': 'bestaudio/best',
-        'outtmpl': os.path.join(output_dir, '%(title)s.%(ext)s'),  # ✅ 제목으로 저장
+        'outtmpl': os.path.join(output_dir, '%(title)s.%(ext)s'),  # 제목으로 저장
         'ffmpeg_location': ffmpeg_path,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'cookiefile': 'cookies.txt',  # ✅ 쿠키 파일 적용
-        'noplaylist': False,  # ✅ 재생목록 전체 다운로드 허용
+        'cookiefile': 'cookies.txt',  # 쿠키 파일 적용
+        'noplaylist': False,  # 재생목록 전체 다운로드 허용
     }
 
     with YoutubeDL(ydl_opts) as ydl:
@@ -51,7 +51,7 @@ def download_youtube_playlist_as_mp3(playlist_url, output_dir):
             if not video:
                 continue
 
-            video_title = sanitize_filename(video.get('title', 'output'))  # ✅ 제목 필터링
+            video_title = sanitize_filename(video.get('title', 'output'))  # 제목 필터링
             output_file = os.path.join(output_dir, f"{video_title}.mp3")
 
             if os.path.exists(output_file):
